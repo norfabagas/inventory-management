@@ -10,11 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->check()) {
+      return redirect('dashboard');
+    } else {
+      return redirect('/login');
+    }
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth', 'isadmin']], function () {
+    Route::get('/dashboard', function () {
+      return view('dashboard.index');
+    });
+});
