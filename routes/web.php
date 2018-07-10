@@ -23,8 +23,15 @@ Route::get('/', function () {
     }
 });
 
-Route::group(['middleware' => ['auth', 'isadmin']], function () {
-    Route::get('/dashboard', function () {
-      return view('dashboard.index');
-    });
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    //render html
+    Route::get('/', 'DashboardController@index');
+    Route::get('/stuff', 'DashboardController@stuff');
+    Route::get('/stuff/category', 'DashboardController@category');
+    // Route::get('/stuff/drop', 'DashboardController@drop');
+    // Route::get('/stuff/person', 'DashboardController@person');
+
+    //render json
+    Route::get('/stuff/category-table', 'CategoryController@table')->name('category');
+    Route::resource('/stuff/category-json', 'CategoryController');
 });
