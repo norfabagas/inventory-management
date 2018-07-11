@@ -13,7 +13,9 @@ class DashboardController extends Controller
 
     public function stuff()
     {
-        return view('dashboard.stuff');
+        $category = \App\Category::get();
+        return view('dashboard.stuff')
+          ->with('category', $category);
     }
 
     public function category()

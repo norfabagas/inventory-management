@@ -32,6 +32,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Route::get('/stuff/person', 'DashboardController@person');
 
     //render json
+    // render category
     Route::get('/stuff/category-table', 'CategoryController@table')->name('category');
     Route::resource('/stuff/category-json', 'CategoryController');
+    // render Stuff
+    Route::get('/stuff-table', 'StuffController@table')->name('stuff');
+    Route::resource('/stuff-json', 'StuffController');
 });

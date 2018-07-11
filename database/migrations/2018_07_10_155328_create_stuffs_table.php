@@ -20,10 +20,21 @@ class CreateStuffsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('condition');
             $table->text('location');
-            $table->text('size')->nullable();
+            $table->string('size')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });
+
+        DB::table('stuffs')->insert([
+          [
+            'name' => 'T-Shirt',
+            'category_id' => 1,
+            'condition' => 'New',
+            'location' => 'Semarang',
+            'size' => 'XL',
+            'quantity' => 10,
+          ]
+        ]);
     }
 
     /**
