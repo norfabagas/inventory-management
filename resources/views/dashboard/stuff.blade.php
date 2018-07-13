@@ -380,6 +380,21 @@
       $('#editModal').modal('toggle');
       var id = $(this).data('id');
       $('#editFormId').val(id);
+      $('#editForm').trigger('reset');
+
+      $('#editFormName').removeClass('is-invalid');
+      $('#editFormCondition').removeClass('is-invalid');
+      $('#editFormLocation').removeClass('is-invalid');
+      $('#editFormSize').removeClass('is-invalid');
+      $('#editFormQuantity').removeClass('is-invalid');
+      // $('#editFormSize').removeClass('is-invalid');
+
+      $('.invalid-feedback.edit-name').empty();
+      $('.invalid-feedback.edit-condition').empty();
+      $('.invalid-feedback.edit-location').empty();
+      $('.invalid-feedback.edit-size').empty();
+      $('.invalid-feedback.edit-quantity').empty();
+      $('.invalid-feedback.edit-size').empty();
 
       $.ajax({
         url: "{{ url('/dashboard/stuff-json/') }}/" + id + '/edit',
