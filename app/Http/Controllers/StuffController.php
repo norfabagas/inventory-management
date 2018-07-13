@@ -91,16 +91,51 @@ class StuffController extends Controller
 
     public function edit($id)
     {
+        $stuff = Stuff::find($id);
 
+        return response()->json([
+          'msg' => $stuff,
+        ]);
     }
 
     public function update($id, Request $request)
     {
+        $stuff = Stuff::find($id);
 
+        $validator = Validator::make($request->all(), [
+          'name' => 'required',
+          'condition' => 'required',
+          'location' => 'required',
+          'quantity' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+          return response()->json([
+            'errors' => $validator->getMessageBag()->toArray(),
+          ]);
+        } else {
+          $stuff->name = $request->name;
+          $stuff->condition = $request->condition;
+          $stuff->location = $request->location;
+          $stuff->quantity = $request->quantity;
+          $stuff->size = $request->size;
+          if ($request->category) {
+            $stuff->category_id = $request->category;
+          }
+          $stuff->save();
+          return response()->json([
+            'msg' => $stuff,
+          ]);
+        }
     }
 
     public function destroy($id)
     {
+        $stuff = Stuff::find($id);
+        $stuff->delete();
 
+        return response()->json([
+          'msg' => $stuff,
+        ]);
     }
 }

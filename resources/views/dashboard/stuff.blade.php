@@ -165,6 +165,81 @@
   </div>
 
 </div>
+
+<!-- edit  modal -->
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        Edit Stuff
+        <button class="close" role="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form method="post" id="editForm">
+
+          <input type="hidden" value="" id="editFormId">
+
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="editFormName" class="form-control">
+            <span class="invalid-feedback edit-name"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Category</label>
+            <select id="editFormCategory" class="form-control">
+              <option value="" selected>Select Category</option>
+              @foreach($category as $a)
+              <option value="{{ $a->id }}">{{ $a->name }}</option>
+              @endforeach
+            </select>
+            <span class="invalid-feedback edit-category"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Condition</label>
+            <textarea id="editFormCondition" class="form-control"></textarea>
+            <span class="invalid-feedback edit-condition"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Location</label>
+            <textarea id="editFormLocation" class="form-control"></textarea>
+            <span class="invalid-feedback edit-location"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Size</label>
+            <input type="text" class="form-control" id="editFormSize">
+            <span class="invalid-feedback edit-size"></span>
+          </div>
+
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" class="form-control" id="editFormQuantity">
+            <span class="invalid-feedback edit-quantity"></span>
+          </div>
+
+          <br/>
+          <input type="submit" class="btn btn-info" value="Update">
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
 @endsection
 
 @section('script')
@@ -299,6 +374,137 @@
           $('#viewQuantity').text(data.msg.quantity);
         }
       })
+    });
+
+    $('#table').on('click', '.edit[data-id]', function () {
+      $('#editModal').modal('toggle');
+      var id = $(this).data('id');
+      $('#editFormId').val(id);
+
+      $.ajax({
+        url: "{{ url('/dashboard/stuff-json/') }}/" + id + '/edit',
+        type: "GET",
+        dataType: "JSON",
+        data: {
+          method: '_EDIT',
+        },
+        success: function (data) {
+          $('#editFormName').val(data.msg.name);
+          $('#editFormCondition').val(data.msg.condition);
+          $('#editFormLocation').val(data.msg.location);
+          $('#editFormSize').val(data.msg.size);
+          $('#editFormQuantity').val(data.msg.quantity);
+        }
+      })
+
+    });
+
+    $('#editForm').on('submit', function () {
+      event.preventDefault();
+
+      var id = $('#editFormId').val();
+
+      $.ajax({
+        url: "{{ url('/dashboard/stuff-json/') }}/" + id,
+        type: "PUT",
+        dataType: "JSON",
+        data: {
+          method: '_UPDATE',
+          name: $('#editFormName').val(),
+          condition: $('#editFormCondition').val(),
+          category: $('#editFormCategory').val(),
+          location: $('#editFormLocation').val(),
+          size: $('#editFormSize').val(),
+          quantity: $('#editFormQuantity').val(),
+        },
+        success: function (data) {
+          if (data.errors) {
+
+            if (data.errors.name) {
+              $('#editFormName').addClass('is-invalid');
+              $('.invalid-feedback.edit-name').text(data.errors.name);
+            } else {
+              $('#editFormName').removeClass('is-invalid');
+              $('.invalid-feedback.edit-name').empty();
+            }
+
+            if (data.errors.condition) {
+              $('#editFormCondition').addClass('is-invalid');
+              $('.invalid-feedback.edit-condition').text(data.errors.condition);
+            } else {
+              $('#editFormCondition').removeClass('is-invalid');
+              $('.invalid-feedback.edit-condition').empty();
+            }
+
+            if (data.errors.location) {
+              $('#editFormLocation').addClass('is-invalid');
+              $('.invalid-feedback.edit-location').text(data.errors.location);
+            } else {
+              $('#editFormLocation').removeClass('is-invalid');
+              $('.invalid-feedback.edit-location').empty();
+            }
+
+            // if (data.errors.size) {
+            //   $('#editFormSize').addClass('is-invalid');
+            //   $('.invalid-feedback.edit-sizw').text(data.errors.size);
+            // } else {
+            //   $('#editFormSize').removeClass('is-invalid');
+            //   $('.invalid-feedback.edit-size').empty();
+            // }
+
+            if (data.errors.quantity) {
+              $('#editFormQuantity').addClass('is-invalid');
+              $('.invalid-feedback.edit-quantity').text(data.errors.quantity);
+            } else {
+              $('#editFormQuantity').removeClass('is-invalid');
+              $('.invalid-feedback.edit-quantity').empty();
+            }
+
+          } else {
+            toastr.success('Stuff ' + data.msg.name + ' updated');
+            $('#editModal').modal('hide');
+            $('#table').DataTable().draw(false);
+          }
+        }
+      })
+
+    });
+
+    $('#table').on('click', '.delete[data-id]', function () {
+      var id = $(this).data('id');
+
+      bootbox.dialog({
+        message: "Are you sure to delete?",
+        buttons: {
+          no: {
+            label: 'No',
+            className: 'btn-danger',
+            callback: function () {
+
+            }
+          },
+          yes: {
+            label: 'Yes',
+            className: 'btn-success',
+            callback: function () {
+              console.log(id);
+              $.ajax({
+                url: "{{ url('dashboard/stuff-json') }}/" + id,
+                type: 'DELETE',
+                dataType: 'JSON',
+                data: {
+                  method: '_DESTROY',
+                },
+                success: function (data) {
+                  toastr.warning('Category ' + data.msg.name + ' deleted');
+                  $('#table').DataTable().draw(false);
+                }
+              })
+            }
+          }
+        }
+      });
+
     });
 
   });
