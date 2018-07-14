@@ -29,7 +29,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/stuff', 'DashboardController@stuff');
     Route::get('/stuff/category', 'DashboardController@category');
     // Route::get('/stuff/drop', 'DashboardController@drop');
-    // Route::get('/stuff/person', 'DashboardController@person');
+    Route::get('/stuff/person', 'DashboardController@person');
 
     //render json
     // render category
@@ -38,4 +38,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // render Stuff
     Route::get('/stuff-table', 'StuffController@table')->name('stuff');
     Route::resource('/stuff-json', 'StuffController');
+    // render Person
+    Route::get('/stuff/person-table', 'PersonController@table')->name('person');
+    Route::resource('stuff/person-json', 'PersonController');
 });

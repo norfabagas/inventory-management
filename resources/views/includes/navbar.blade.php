@@ -29,11 +29,11 @@
             <a href="#">Drop</a>
           </li>
           <li>
-            <a href="#">Person In Charge</a>
+            <a href="{{ url('dashboard/stuff/person') }}">Person In Charge</a>
             </li>
         </ul>
       </li>
-      
+
     </ul>
     <ul class="navbar-nav sidenav-toggler">
       <li class="nav-item">

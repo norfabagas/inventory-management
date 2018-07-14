@@ -22,4 +22,14 @@ class DashboardController extends Controller
     {
         return view('dashboard.category');
     }
+
+    public function drop()
+    {
+        return view('dashboard.drop');
+    }
+
+    public function person()
+    {
+        return view('dashboard.person');
+    }
 }

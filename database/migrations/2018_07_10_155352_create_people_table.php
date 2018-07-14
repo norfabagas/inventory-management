@@ -18,6 +18,12 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        DB::table('people')->insert([
+          [
+            'name' => 'Andrew',
+          ]
+        ]);
     }
 
     /**
