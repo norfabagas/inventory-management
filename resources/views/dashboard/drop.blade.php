@@ -126,17 +126,6 @@
           <input type="hidden" id="editFormId">
 
           <div class="form-group">
-            <label>Stuff</label>
-            <select id="editFormStuff" class="form-control">
-              <option value="" selected>Select Stuff</option>
-              @foreach($stuff as $a)
-              <option value="{{ $a->id }}">{{ $a->name }}</option>
-              @endforeach
-            </select>
-            <span class="invalid-feedback edit-stuff"></span>
-          </div>
-
-          <div class="form-group">
             <label>Person In Charge</label>
             <select id="editFormPerson" class="form-control">
               <option value="" selected>Select Person</option>
