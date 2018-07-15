@@ -386,12 +386,10 @@ $(document).ready(function () {
         $('#editFormDetail').removeClass('is-invalid');
         $('#editFormQuantity').removeClass('is-invalid');
         $('#editFormPerson').removeClass('is-invalid');
-        $('#editFormStuff').removeClass('is-invalid');
 
         $('.invalid-feedback.edit-detail').empty();
         $('.invalid-feedback.edit-quantity').empty();
         $('.invalid-feedback.edit-person').empty();
-        $('.invalid-feedback.edit-stuff').empty();
 
         $('#editFormId').val(id);
       }
@@ -408,7 +406,6 @@ $(document).ready(function () {
       dataType: 'JSON',
       data: {
         method: '_UPDATE',
-        stuff: $('#editFormStuff').val(),
         person: $('#editFormPerson').val(),
         quantity: $('#editFormQuantity').val(),
         detail: $('#editFormDetail').val(),
@@ -416,14 +413,6 @@ $(document).ready(function () {
       success: function (data) {
 
         if (data.errors) {
-
-          if (data.errors.stuff) {
-            $('#editFormStuff').addClass('is-invalid');
-            $('.invalid-feedback.edit-stuff').text(data.errors.stuff);
-          } else {
-            $('#editFormStuff').removeClass('is-invalid');
-            $('.invalid-feedback.edit-stuff').empty();
-          }
 
           if (data.errors.person) {
             $('#editFormPerson').addClass('is-invalid');

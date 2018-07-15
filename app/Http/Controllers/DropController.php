@@ -102,11 +102,8 @@ class DropController extends Controller
 
           $drop->detail = $request->detail;
           $drop->quantity = $request->quantity;
-          if ($drop->stuff != '') {
-            $drop->stuff = $request->stuff;
-          }
-          if ($drop->person != '') {
-            $drop->person = $request->person;
+          if ($request->person) {
+            $drop->person_id = $request->person;
           }
           $drop->save();
 
