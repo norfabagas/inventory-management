@@ -26,7 +26,7 @@
             <a href="{{ url('dashboard/stuff/category') }}">Category</a>
           </li>
           <li>
-            <a href="#">Drop</a>
+            <a href="{{ url('dashboard/stuff/drop') }}">Drop</a>
           </li>
           <li>
             <a href="{{ url('dashboard/stuff/person') }}">Person In Charge</a>

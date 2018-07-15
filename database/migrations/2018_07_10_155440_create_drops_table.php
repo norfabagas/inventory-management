@@ -18,9 +18,19 @@ class CreateDropsTable extends Migration
             $table->unsignedInteger('stuff_id');
             $table->foreign('stuff_id')->references('id')->on('stuffs')->onDelete('cascade');
             $table->text('detail');
+            $table->integer('quantity');
             $table->unsignedInteger('person_id');
             $table->timestamps();
         });
+
+        DB::table('drops')->insert([
+          [
+            'stuff_id' => 1,
+            'detail' => 'For giveaway',
+            'quantity' => 5,
+            'person_id' => 1,
+          ]
+        ]);
     }
 
     /**

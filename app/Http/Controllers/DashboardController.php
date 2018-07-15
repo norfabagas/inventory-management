@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Stuff;
+use App\Person;
+use App\Drop;
 
 class DashboardController extends Controller
 {
@@ -25,7 +29,12 @@ class DashboardController extends Controller
 
     public function drop()
     {
-        return view('dashboard.drop');
+        $stuff = Stuff::get();
+        $person = Person::get();
+
+        return view('dashboard.drop')
+          ->with('stuff', $stuff)
+          ->with('person', $person);
     }
 
     public function person()
