@@ -69,12 +69,7 @@
 
           <div class="form-group">
             <label>Person In Charge</label>
-            <select id="addFormPerson" class="form-control">
-              <option value="" selected>Select Person</option>
-              @foreach($person as $a)
-              <option value="{{ $a->id }}">{{ $a->name }}</option>
-              @endforeach
-            </select>
+            <input type="text" id="addFormPerson" class="form-control">
             <span class="invalid-feedback add-person"></span>
           </div>
 
@@ -127,12 +122,7 @@
 
           <div class="form-group">
             <label>Person In Charge</label>
-            <select id="editFormPerson" class="form-control">
-              <option value="" selected>Select Person</option>
-              @foreach($person as $a)
-              <option value="{{ $a->id }}">{{ $a->name }}</option>
-              @endforeach
-            </select>
+            <input type="text" id="editFormPerson" class="form-control">
             <span class="invalid-feedback edit-person"></span>
           </div>
 
@@ -255,7 +245,7 @@ $(document).ready(function () {
       { data: 'stuff_name', name: 'stuff_name' },
       { data: 'detail', name: 'detail' },
       { data: 'quantity', name: 'quantity' },
-      { data: 'person_name', name: 'person_name' },
+      { data: 'person', name: 'person' },
       { data: 'action', name: 'action' },
     ]
   });
@@ -350,7 +340,8 @@ $(document).ready(function () {
         $('#showDropQuantity').text(data.drop.quantity);
         $('#showDropCreatedAt').text(data.drop.created_at);
         $('#showDropUpdatedAt').text(data.drop.updated_at);
-        $('#showPersonName').text(data.person.name);
+        // $('#showPersonName').text(data.person.name);
+        $('#showPersonName').text(data.drop.person);
       }
     })
   });
@@ -371,6 +362,7 @@ $(document).ready(function () {
 
         $('#editFormDetail').val(data.msg.detail);
         $('#editFormQuantity').val(data.msg.quantity);
+        $('#editFormPerson').val(data.msg.person);
 
         $('#editFormDetail').removeClass('is-invalid');
         $('#editFormQuantity').removeClass('is-invalid');

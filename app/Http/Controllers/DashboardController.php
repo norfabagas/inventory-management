@@ -30,11 +30,11 @@ class DashboardController extends Controller
     public function drop()
     {
         $stuff = Stuff::get();
-        $person = Person::get();
+        // $person = Person::get();
 
         return view('dashboard.drop')
-          ->with('stuff', $stuff)
-          ->with('person', $person);
+          ->with('stuff', $stuff);
+          // ->with('person', $person);
     }
 
     public function person()
