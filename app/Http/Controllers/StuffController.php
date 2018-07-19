@@ -27,6 +27,9 @@ class StuffController extends Controller
           ->addColumn('Quantity', function ($stuff) {
             return $stuff->quantity;
           })
+          ->addColumn('Detail', function ($stuff) {
+            return $stuff->detail;
+          })
           ->addColumn('action', function ($stuff) {
             return '
               <button class="btn btn-warning btn-sm show" data-id="'. $stuff->id .'"><i class="fa fa-eye"></i></button>
@@ -66,6 +69,7 @@ class StuffController extends Controller
           'condition' => 'required',
           'location' => 'required',
           'quantity' => 'required|integer',
+          'detail' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -82,6 +86,7 @@ class StuffController extends Controller
           if ($stuff->size != '') {
               $stuff->size = $request->size;
           }
+          $stuff->detail = $request->detail;
           $stuff->save();
           return response()->json([
             'msg' => $stuff,
@@ -107,6 +112,7 @@ class StuffController extends Controller
           'condition' => 'required',
           'location' => 'required',
           'quantity' => 'required|integer',
+          'detail' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -122,6 +128,7 @@ class StuffController extends Controller
           if ($request->category) {
             $stuff->category_id = $request->category;
           }
+          $stuff->detail = $request->detail;
           $stuff->save();
           return response()->json([
             'msg' => $stuff,

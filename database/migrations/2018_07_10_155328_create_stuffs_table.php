@@ -21,6 +21,7 @@ class CreateStuffsTable extends Migration
             $table->text('condition');
             $table->text('location');
             $table->string('size')->nullable();
+            $table->text('detail');
             $table->integer('quantity');
             $table->timestamps();
         });
@@ -32,6 +33,7 @@ class CreateStuffsTable extends Migration
             'condition' => 'New',
             'location' => 'Semarang',
             'size' => 'XL',
+            'detail' => 'Shirt for giveaway',
             'quantity' => 10,
           ]
         ]);

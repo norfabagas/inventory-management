@@ -90,6 +90,12 @@
           </div>
 
           <div class="form-group">
+            <label>Detail</label>
+            <textarea id="addFormDetail" class="form-control"></textarea>
+            <span class="invalid-feedback add-detail"></span>
+          </div>
+
+          <div class="form-group">
             <label>Quantity</label>
             <input type="number" class="form-control" id="addFormQuantity">
             <span class="invalid-feedback add-quantity"></span>
@@ -148,6 +154,11 @@
           <tr>
             <td>Size</td>
             <td><span id="viewSize"></span></td>
+          </tr>
+
+          <tr>
+            <td>Detail</td>
+            <td><span id="viewDetail"></span></td>
           </tr>
 
           <tr>
@@ -220,6 +231,12 @@
           </div>
 
           <div class="form-group">
+            <label>Detail</label>
+            <textarea id="editFormDetail" class="form-control"></textarea>
+            <span class="invalid-feedback edit-detail"></span>
+          </div>
+
+          <div class="form-group">
             <label>Quantity</label>
             <input type="number" class="form-control" id="editFormQuantity">
             <span class="invalid-feedback edit-quantity"></span>
@@ -267,6 +284,7 @@
       $('#addFormCondition').removeClass('is-invalid');
       $('#addFormLocation').removeClass('is-invalid');
       $('#addFormSize').removeClass('is-invalid');
+      $('#addFormDetail').removeClass('is-invalid');
       $('#addFormQuantity').removeClass('is-invalid');
 
       $('.invalid-feedback.add-name').empty();
@@ -274,6 +292,7 @@
       $('.invalid-feedback.add-condition').empty();
       $('.invalid-feedback.add-location').empty();
       $('.invalid-feedback.add-size').empty();
+      $('.invalid-feedback.add-detail').empty();
       $('.invalid-feedback.add-quantity').empty();
     });
 
@@ -291,6 +310,7 @@
           condition: $('#addFormCondition').val(),
           location: $('#addFormLocation').val(),
           size: $('#addFormSize').val(),
+          detail: $('#addFormDetail').val(),
           quantity: $('#addFormQuantity').val(),
         },
         success: function (data) {
@@ -336,6 +356,14 @@
             //   $('.invalid-feedback.add-size').empty();
             // }
 
+            if (data.errors.detail) {
+              $('#addFormDetail').addClass('is-invalid');
+              $('.invalid-feedback.add-detail').text(data.errors.detail);
+            } else {
+              $('#addFormDetail').removeClass('is-invalid');
+              $('.invalid-feedback.add-detail').empty();
+            }
+
             if (data.errors.quantity) {
               $('#addFormQuantity').addClass('is-invalid');
               $('.invalid-feedback.add-quantity').text(data.errors.quantity);
@@ -371,6 +399,7 @@
           $('#viewCondition').text(data.msg.condition);
           $('#viewLocation').text(data.msg.location);
           $('#viewSize').text(data.msg.size);
+          $('#viewDetail').text(data.msg.detail);
           $('#viewQuantity').text(data.msg.quantity);
         }
       })
@@ -388,6 +417,7 @@
       $('#editFormSize').removeClass('is-invalid');
       $('#editFormQuantity').removeClass('is-invalid');
       // $('#editFormSize').removeClass('is-invalid');
+      $('#editFormDetail').removeClass('is-invalid');
 
       $('.invalid-feedback.edit-name').empty();
       $('.invalid-feedback.edit-condition').empty();
@@ -395,6 +425,7 @@
       $('.invalid-feedback.edit-size').empty();
       $('.invalid-feedback.edit-quantity').empty();
       $('.invalid-feedback.edit-size').empty();
+      $('.invalid-feedback.edit-detail').empty();
 
       $.ajax({
         url: "{{ url('/dashboard/stuff-json/') }}/" + id + '/edit',
@@ -408,6 +439,7 @@
           $('#editFormCondition').val(data.msg.condition);
           $('#editFormLocation').val(data.msg.location);
           $('#editFormSize').val(data.msg.size);
+          $('#editFormDetail').val(data.msg.detail);
           $('#editFormQuantity').val(data.msg.quantity);
         }
       })
@@ -430,6 +462,7 @@
           category: $('#editFormCategory').val(),
           location: $('#editFormLocation').val(),
           size: $('#editFormSize').val(),
+          detail: $('#editFormDetail').val(),
           quantity: $('#editFormQuantity').val(),
         },
         success: function (data) {
@@ -466,6 +499,14 @@
             //   $('#editFormSize').removeClass('is-invalid');
             //   $('.invalid-feedback.edit-size').empty();
             // }
+
+            if (data.errors.detail) {
+              $('#editFormDetail').addClass('is-invalid');
+              $('.invalid-feedback.edit-detail').text(data.errors.detail);
+            } else {
+              $('#editFormDetail').removeClass('is-invalid');
+              $('.invalid-feedback.edit-detail').empty();
+            }
 
             if (data.errors.quantity) {
               $('#editFormQuantity').addClass('is-invalid');
