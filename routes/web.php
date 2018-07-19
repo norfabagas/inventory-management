@@ -30,6 +30,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/stuff/category', 'DashboardController@category');
     Route::get('/stuff/drop', 'DashboardController@drop');
     // Route::get('/stuff/person', 'DashboardController@person');
+    Route::get('/user', 'DashboardController@user');
 
     //render json
     // render category
@@ -44,4 +45,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // Render Drop
     Route::get('/stuff/drop-table', 'DropController@table')->name('drop');
     Route::resource('stuff/drop-json', 'DropController');
+    // render person
+    Route::get('/user-table', 'UserController@table')->name('user');
+    Route::resource('/user-json', 'UserController');
 });
