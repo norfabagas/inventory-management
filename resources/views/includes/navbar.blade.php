@@ -33,6 +33,14 @@
             </li> -->
         </ul>
       </li>
+      @if(auth()->user()->role == 'admin')
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="user">
+        <a class="nav-link" href="{{ url('dashboard/user') }}">
+          <i class="fa fa-fw fa-user"></i>
+          <span class="nav-link-text">User</span>
+        </a>
+      </li>
+      @endif
 
     </ul>
     <ul class="navbar-nav sidenav-toggler">

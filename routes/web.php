@@ -30,7 +30,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/stuff/category', 'DashboardController@category');
     Route::get('/stuff/drop', 'DashboardController@drop');
     // Route::get('/stuff/person', 'DashboardController@person');
-    Route::get('/user', 'DashboardController@user');
+    Route::get('/user', 'DashboardController@user')->middleware('isadmin');
 
     //render json
     // render category
