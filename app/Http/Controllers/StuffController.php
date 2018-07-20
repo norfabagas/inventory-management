@@ -130,9 +130,7 @@ class StuffController extends Controller
           if ($request->category) {
             $stuff->category_id = $request->category;
           }
-          if ($request->detail) {
-            $stuff->detail = $request->detail;
-          }
+          $stuff->detail = $request->detail;
           $stuff->save();
           return response()->json([
             'msg' => $stuff,

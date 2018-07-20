@@ -21,7 +21,7 @@ class CreateStuffsTable extends Migration
             $table->text('condition');
             $table->text('location');
             $table->string('size')->nullable();
-            $table->text('detail');
+            $table->text('detail')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });
