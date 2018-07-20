@@ -69,7 +69,7 @@ class StuffController extends Controller
           'condition' => 'required',
           'location' => 'required',
           'quantity' => 'required|integer',
-          'detail' => 'required',
+          // 'detail' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -83,10 +83,12 @@ class StuffController extends Controller
           $stuff->condition = $request->condition;
           $stuff->location = $request->location;
           $stuff->quantity = $request->quantity;
-          if ($stuff->size != '') {
+          if ($request->size != '') {
               $stuff->size = $request->size;
           }
-          $stuff->detail = $request->detail;
+          if ($request->detail != '') {
+              $stuff->detail = $request->detail;
+          }
           $stuff->save();
           return response()->json([
             'msg' => $stuff,
@@ -112,7 +114,7 @@ class StuffController extends Controller
           'condition' => 'required',
           'location' => 'required',
           'quantity' => 'required|integer',
-          'detail' => 'required',
+          // 'detail' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -128,7 +130,9 @@ class StuffController extends Controller
           if ($request->category) {
             $stuff->category_id = $request->category;
           }
-          $stuff->detail = $request->detail;
+          if ($request->detail) {
+            $stuff->detail = $request->detail;
+          }
           $stuff->save();
           return response()->json([
             'msg' => $stuff,
