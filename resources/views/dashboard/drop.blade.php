@@ -28,6 +28,7 @@
               <th>Detail</th>
               <th>Quantity</th>
               <th>Person In Charge</th>
+              <th>Create Date</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -246,6 +247,7 @@ $(document).ready(function () {
       { data: 'detail', name: 'detail' },
       { data: 'quantity', name: 'quantity' },
       { data: 'person', name: 'person' },
+      { data: 'created_at', name: 'created_at' },
       { data: 'action', name: 'action' },
     ]
   });

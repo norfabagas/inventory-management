@@ -30,6 +30,8 @@ class CreateDropsTable extends Migration
             'detail' => 'For giveaway',
             'quantity' => 5,
             'person' => 'Andy',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
           ]
         ]);
     }

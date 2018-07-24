@@ -24,6 +24,7 @@
               <th>Category</th>
               <th>Location</th>
               <th>Quantity</th>
+              <th>Create Date</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -165,6 +166,16 @@
             <td>Quantity</td>
             <td><span id="viewQuantity"></span></td>
           </tr>
+
+          <tr>
+            <td>Create Date</td>
+            <td><span id="viewCreatedAt"></span></td>
+          </tr>
+
+          <tr>
+            <td>Update Date</td>
+            <td><span id="viewUpdatedAt"></span></td>
+          </tr>
         </table>
       </div>
 
@@ -272,6 +283,7 @@
         { data: 'Category', name: 'Category' },
         { data: 'Location', name: 'Location' },
         { data: 'Quantity', name: 'Quantity' },
+        { data: 'created_at', name: 'Create Date' },
         { data: 'action', name: 'action', searchable: false },
       ]
     });
@@ -401,6 +413,8 @@
           $('#viewSize').text(data.msg.size);
           $('#viewDetail').text(data.msg.detail);
           $('#viewQuantity').text(data.msg.quantity);
+          $('#viewCreatedAt').text(data.msg.created_at);
+          $('#viewUpdatedAt').text(data.msg.updated_at);
         }
       })
     });
