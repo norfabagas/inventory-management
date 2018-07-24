@@ -42,6 +42,13 @@
       </li>
       @endif
 
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="user">
+        <a class="nav-link" href="{{ url('dashboard/excel') }}">
+          <i class="fa fa-fw fa-file"></i>
+          <span class="nav-link-text">Excel</span>
+        </a>
+      </li>
+
     </ul>
     <ul class="navbar-nav sidenav-toggler">
       <li class="nav-item">

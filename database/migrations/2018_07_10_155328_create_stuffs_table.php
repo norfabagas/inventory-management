@@ -35,6 +35,8 @@ class CreateStuffsTable extends Migration
             'size' => 'XL',
             'detail' => 'Shirt for giveaway',
             'quantity' => 10,
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
           ]
         ]);
     }

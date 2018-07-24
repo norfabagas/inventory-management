@@ -7,6 +7,7 @@ use App\Category;
 use App\Stuff;
 use App\Person;
 use App\Drop;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -45,5 +46,17 @@ class DashboardController extends Controller
     public function user()
     {
         return view('dashboard.user');
+    }
+
+    public function excel()
+    {
+        $oldest_stuff = Stuff::orderBy('created_at', 'ASC')->first();
+        $newest_stuff = Stuff::orderBy('created_at', 'DESC')->first();
+        $oldest = $oldest_stuff->created_at;
+        $newest = $newest_stuff->created_at;
+
+        return view('dashboard.excel')
+          ->with('oldest', $oldest)
+          ->with('newest', $newest);
     }
 }

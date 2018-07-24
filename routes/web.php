@@ -48,4 +48,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     // render person
     Route::get('/user-table', 'UserController@table')->name('user');
     Route::resource('/user-json', 'UserController');
+
+    // render excel
+    Route::get('/excel', 'DashboardController@excel');
+    Route::get('/excel/stuff/{from}/{to}', 'ExcelController@stuff');
+    Route::get('/excel/stock/{from}/{to}', 'ExcelController@stock');
+    Route::get('/excel/drop/{from}/{to}', 'ExcelController@drop');
 });
