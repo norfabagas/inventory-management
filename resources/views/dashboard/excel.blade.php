@@ -67,7 +67,7 @@
             $(location).attr("href", "{{ url('dashboard/excel/stock/') }}/" + from + "/" + to);
             break;
           case 'stuff':
-            toastr.success('stuff');
+            toastr.success('export data for stuff created');
             $(location).attr("href", "{{ url('dashboard/excel/stuff/') }}/" + from + "/" + to);
             break;
           case 'drop':
