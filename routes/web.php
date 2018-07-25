@@ -50,8 +50,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::resource('/user-json', 'UserController');
 
     // render excel
-    Route::get('/excel', 'DashboardController@excel');
-    Route::get('/excel/stuff/{from}/{to}', 'ExcelController@stuff');
-    Route::get('/excel/stock/{from}/{to}', 'ExcelController@stock');
-    Route::get('/excel/drop/{from}/{to}', 'ExcelController@drop');
+    Route::get('/excel', 'DashboardController@excel')->name('excel');
+    Route::get('/excel/stuff/{from}/{to}/{format?}', 'ExcelController@stuff');
+    Route::get('/excel/stock/{from}/{to}/{format?}', 'ExcelController@stock');
+    Route::get('/excel/drop/{from}/{to}/{format?}', 'ExcelController@drop');
 });

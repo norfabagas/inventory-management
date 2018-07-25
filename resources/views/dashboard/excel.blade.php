@@ -35,6 +35,16 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label>Export Format</label>
+        <select id="formatForm" class="form-control">
+          <option value="">Select</option>
+          <option value="csv">CSV</option>
+          <option value="xls">XLS</option>
+          <option value="xlsx">XLSX</option>
+        </select>
+      </div>
+
       <br/>
       <input type="submit" class="btn btn-info" value="Export">
     </form>
@@ -56,23 +66,26 @@
       var from = $('#fromForm').val();
       var to = $('#toForm').val();
       var data = $('#dataForm').val();
+      var format = $('#formatForm').val();
       if (from >= to) {
         toastr.warning('\'From\' date input must be less or 1 day earlier than \'To\' date input');
       } else if (data == '') {
         toastr.warning('Data type is required');
+      } else if (format == '') {
+        toastr.warning('Export Format is required')
       } else {
         switch (data) {
           case 'stock':
             toastr.success('stock');
-            $(location).attr("href", "{{ url('dashboard/excel/stock/') }}/" + from + "/" + to);
+            $(location).attr("href", "{{ url('dashboard/excel/stock/') }}/" + from + "/" + to + "/" + format);
             break;
           case 'stuff':
             toastr.success('export data for stuff created');
-            $(location).attr("href", "{{ url('dashboard/excel/stuff/') }}/" + from + "/" + to);
+            $(location).attr("href", "{{ url('dashboard/excel/stuff/') }}/" + from + "/" + to + "/" + format);
             break;
           case 'drop':
             toastr.success('drop');
-            $(location).attr("href", "{{ url('dashboard/excel/drop/') }}/" + from + "/" + to)
+            $(location).attr("href", "{{ url('dashboard/excel/drop/') }}/" + from + "/" + to + "/" + format);
             break;
           default:
             toastr.warning('data not valid');
