@@ -13,7 +13,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $stuffs = Stuff::get();
+        $drops = Drop::get();
+        $stuff_sum = $drop_sum = 0;
+        foreach ($stuffs as $stuff) {
+          $stuff_sum = $stuff_sum + $stuff->quantity;
+        }
+        foreach ($drops as $drop) {
+          $drop_sum = $drop_sum + $drop->quantity;
+        }
+        return view('dashboard.index')
+          ->with('stuff_sum', $stuff_sum)
+          ->with('drop_sum', $drop_sum);
     }
 
     public function stuff()
