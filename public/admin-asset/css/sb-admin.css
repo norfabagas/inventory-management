@@ -225,8 +225,12 @@ body.fixed-nav {
   }
 }
 
+#mainNav.fixed-top.navbar-dark {
+  background-color: #990000 !important;
+}
+
 #mainNav.fixed-top.navbar-dark .sidenav-toggler {
-  background-color: #212529;
+  background-color: #990000;
 }
 
 #mainNav.fixed-top.navbar-dark .sidenav-toggler a i {
