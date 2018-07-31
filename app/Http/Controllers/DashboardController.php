@@ -8,23 +8,68 @@ use App\Stuff;
 use App\Person;
 use App\Drop;
 use Carbon\Carbon;
+use DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $stuffs = Stuff::get();
-        $drops = Drop::get();
-        $stuff_sum = $drop_sum = 0;
-        foreach ($stuffs as $stuff) {
-          $stuff_sum = $stuff_sum + $stuff->quantity;
-        }
-        foreach ($drops as $drop) {
-          $drop_sum = $drop_sum + $drop->quantity;
-        }
+        $stuff_sum = DB::table('stuffs')
+          ->sum('quantity');
+
+        $drop_sum = DB::table('drops')
+          ->sum('quantity');
+
+        $stuff_date = [];
+        $stuff_date[1] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(1))
+          ->sum('quantity');
+
+        $stuff_date[2] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(2))
+          ->sum('quantity');
+
+        $stuff_date[3] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(3))
+          ->sum('quantity');
+
+        $stuff_date[4] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(4))
+          ->sum('quantity');
+
+        $stuff_date[5] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(5))
+          ->sum('quantity');
+
+
+        $stuff_date[6] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subDay(6))
+          ->sum('quantity');
+
+        $stuff_date['m1'] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow(1))
+          ->sum('quantity');
+
+        $stuff_date['m2'] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow(2))
+          ->sum('quantity');
+
+        $stuff_date['m3'] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow(3))
+          ->sum('quantity');
+
+        $stuff_date['m4'] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow(4))
+          ->sum('quantity');
+
+        $stuff_date['m5'] = DB::table('stuffs')
+          ->where('created_at', '<=', \Carbon\Carbon::now()->subMonthsNoOverflow(5))
+          ->sum('quantity');
+
         return view('dashboard.index')
           ->with('stuff_sum', $stuff_sum)
-          ->with('drop_sum', $drop_sum);
+          ->with('drop_sum', $drop_sum)
+          ->with('stuff_date', $stuff_date);
     }
 
     public function stuff()

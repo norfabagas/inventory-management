@@ -86,7 +86,6 @@
     <script src="{{ asset('admin-asset/js/sb-admin.min.js') }}"></script>
     <!-- Custom scripts for this page-->
     <script src="{{ asset('admin-asset/js/sb-admin-datatables.min.js') }}"></script>
-    <script src="{{ asset('admin-asset/js/sb-admin-charts.js') }}"></script>
     <!-- bootbox -->
     <script src="{{ asset('js/bootbox.min.js') }}"></script>
     <!-- toastr js -->
