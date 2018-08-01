@@ -28,7 +28,7 @@ class ExcelController extends Controller
           }
         }
 
-        Excel::create('Stuff-' . $from . ' to ' . $to, function ($excel) {
+        Excel::create('Barang_Masuk-' . $from . ' to ' . $to, function ($excel) {
           $excel->sheet('stuff', function ($sheet) {
             $sheet->loadView('excels.stuff')
               ->with('stuffs', $GLOBALS['stuffs']);
@@ -45,7 +45,7 @@ class ExcelController extends Controller
           ->orderBy('stuffs.created_at', 'ASC')
           ->get();
 
-        Excel::create('Stock-' . $from . ' to ' . $to, function ($excel) {
+        Excel::create('Stok-' . $from . ' to ' . $to, function ($excel) {
           $excel->sheet('stock', function ($sheet) {
             $sheet->loadView('excels.stock')
               ->with('stocks', $GLOBALS['stocks']);
@@ -63,7 +63,7 @@ class ExcelController extends Controller
           ->orderBy('drops.created_at', 'ASC')
           ->get();
 
-        Excel::create('Drops-' . $from . ' to ' . $to, function ($excel) {
+        Excel::create('Barang_Keluar-' . $from . ' to ' . $to, function ($excel) {
           $excel->sheet('drop', function ($sheet) {
             $sheet->loadView('excels.drop')
               ->with('drops', $GLOBALS['drops']);

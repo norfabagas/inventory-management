@@ -20,13 +20,13 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseStuffs">
           <li>
-            <a href="{{ url('dashboard/stuff') }}">Stock</a>
+            <a href="{{ url('dashboard/stuff') }}">Stok</a>
           </li>
           <li>
-            <a href="{{ url('dashboard/stuff/category') }}">Category</a>
+            <a href="{{ url('dashboard/stuff/category') }}">Kategori</a>
           </li>
           <li>
-            <a href="{{ url('dashboard/stuff/drop') }}">Drop</a>
+            <a href="{{ url('dashboard/stuff/drop') }}">Barang Keluar</a>
           </li>
           <!-- <li>
             <a href="{{ url('dashboard/stuff/person') }}">Person In Charge</a>
