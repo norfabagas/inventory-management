@@ -29,9 +29,9 @@
         <label>Data to Export</label>
         <select id="dataForm" class="form-control">
           <option value="">Select</option>
-          <option value="stock">Stock</option>
-          <option value="stuff">Stuff</option>
-          <option value="drop">Drop</option>
+          <option value="stock">Stok</option>
+          <option value="stuff">Barang Masuk</option>
+          <option value="drop">Barang Keluar</option>
         </select>
       </div>
 

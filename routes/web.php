@@ -58,3 +58,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/excel/stock/{from}/{to}/{format?}', 'ExcelController@stock');
     Route::get('/excel/drop/{from}/{to}/{format?}', 'ExcelController@drop');
 });
+
+Route::get('email', function(){
+	\Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+	{
+		$message->subject('Laravel are awesome!');
+		$message->from('inventory@norfabagas.xyz', 'Website Name');
+		$message->to('akunnyagugel@gmail.com');
+	});
+});
