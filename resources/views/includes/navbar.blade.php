@@ -45,7 +45,7 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="user">
         <a class="nav-link" href="{{ url('dashboard/excel') }}">
           <i class="fa fa-fw fa-file"></i>
-          <span class="nav-link-text">Excel</span>
+          <span class="nav-link-text">Laporan</span>
         </a>
       </li>
 
