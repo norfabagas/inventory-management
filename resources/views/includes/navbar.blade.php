@@ -16,14 +16,14 @@
       <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Stuffs">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseStuffs" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-stack-exchange"></i>
-          <span class="nav-link-text">Stuffs</span>
+          <span class="nav-link-text">Data Barang</span>
         </a>
         <ul class="sidenav-second-level collapse" id="collapseStuffs">
           <li>
-            <a href="{{ url('dashboard/stuff') }}">Stok</a>
+            <a href="{{ url('dashboard/stuff') }}">Stok Barang</a>
           </li>
           <li>
-            <a href="{{ url('dashboard/stuff/category') }}">Kategori</a>
+            <a href="{{ url('dashboard/stuff/category') }}">Kategori Barang</a>
           </li>
           <li>
             <a href="{{ url('dashboard/stuff/drop') }}">Barang Keluar</a>
