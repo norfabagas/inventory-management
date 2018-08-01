@@ -20,7 +20,7 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseStuffs">
           <li>
-            <a href="{{ url('dashboard/stuff') }}">Stuff list</a>
+            <a href="{{ url('dashboard/stuff') }}">Stock</a>
           </li>
           <li>
             <a href="{{ url('dashboard/stuff/category') }}">Category</a>
@@ -60,7 +60,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+        <a class="nav-link" style="color: white;" data-toggle="modal" data-target="#exampleModal">
           <i class="fa fa-fw fa-sign-out"></i>Logout</a>
       </li>
     </ul>
