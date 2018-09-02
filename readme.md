@@ -18,4 +18,4 @@ Inventory Management untuk pengelolaan barang masuk dan keluar. Dikembangkan den
   <li>Grafik Data</li>
 </ul>
 <h2>Live Demo</h2>
-Untuk demo dan percobaan, dapat mengunjungi <a href="https://inventory-demo-web.herokuapp.com">Demo</a>
+Untuk demo dan percobaan, dapat mengunjungi <a href="https://inventory-demo-web.herokuapp.com">Demo</a> dengan kombinasi [admin@mail.com / katakunci]
